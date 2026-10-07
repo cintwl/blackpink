@@ -1,0 +1,168 @@
+/* --- BLACKPINK THEME --- */
+:root {
+    --bg: #0a0a0a;         /* Deep Black */
+    --card-bg: #1a1a1a;    /* Slightly lighter black */
+    --text: #ffffff;       /* White text */
+    --accent: #ff1493;     /* Hot Pink */
+    --accent2: #ff69b4;    /* Light Pink */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background-color: var(--bg);
+    text-align: center;
+}
+
+/* --- NAVIGATION --- */
+nav {
+    background-color: rgba(10, 10, 10, 0.9);
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--accent);
+}
+nav a {
+    color: var(--text);
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+nav a:hover { color: var(--accent); }
+
+/* --- HERO SECTION --- */
+.hero-section {
+    padding: 150px 20px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #2a0a1a 100%);
+    border-bottom: 4px solid var(--accent);
+}
+.hero-section h1 {
+    font-size: 5rem;
+    color: var(--accent);
+    text-shadow: 0 0 20px rgba(255, 20, 147, 0.8);
+    letter-spacing: 5px;
+}
+.hero-section p {
+    font-size: 1.5rem;
+    color: var(--accent2);
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+}
+.scroll-indicator {
+    font-weight: bold;
+    color: #888;
+    animation: bounce 2s infinite;
+}
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+
+/* --- SECTIONS --- */
+section {
+    padding: 80px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-bottom: 1px solid #222;
+}
+h2 {
+    font-size: 2.5rem;
+    color: var(--text);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--accent);
+    margin: 10px auto 0 auto;
+    border-radius: 2px;
+}
+.subtitle {
+    font-size: 1.1rem;
+    color: #aaa;
+    margin-bottom: 50px;
+}
+
+/* --- MEMBERS GRID --- */
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+}
+.member-card {
+    background: var(--card-bg);
+    padding: 30px 20px;
+    border-radius: 15px;
+    border: 2px solid #333;
+    transition: all 0.3s;
+}
+.member-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 20px rgba(255, 20, 147, 0.2);
+}
+.member-icon { font-size: 3rem; margin-bottom: 15px; }
+.member-card h3 { color: var(--accent2); font-size: 1.5rem; margin-bottom: 10px; }
+.member-card p { color: #ccc; font-size: 0.95rem; }
+
+/* --- MUSIC SECTION --- */
+.music-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.song-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card-bg);
+    padding: 20px 30px;
+    border-radius: 10px;
+    border-left: 5px solid var(--accent);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.song-item:hover { background: #2a2a2a; }
+.song-title { font-weight: bold; font-size: 1.2rem; }
+.song-icon { font-size: 1.5rem; }
+
+/* --- GALLERY SECTION --- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+.gallery-item {
+    height: 250px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    border: 2px solid rgba(255,255,255,0.1);
+}
+
+/* --- FOOTER --- */
+footer {
+    padding: 40px;
+    background-color: #000;
+    color: var(--accent);
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-top: 2px solid var(--accent);
+    letter-spacing: 2px;
+}
