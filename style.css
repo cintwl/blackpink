@@ -41,8 +41,8 @@ nav a:hover { color: var(--accent); }
 /* --- HERO SECTION (FULL SCREEN BACKGROUND) --- */
 .hero-section {
     position: relative;
-    height: 100vh; /* Fills the entire screen height */
-    padding: 0; /* Removes empty space around the image */
+    height: 100vh;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,19 +56,19 @@ nav a:hover { color: var(--accent); }
     width: 100%; 
     height: 100%;
     z-index: 1;
-    opacity: 0.8; /* Higher number = more clear, lower = more transparent */
+    opacity: 0.8; 
 }
 
 .hero-bg img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Stretches the image to fill the whole area without distortion */
-    object-position: center; /* Keeps the girls in the center of the frame */
+    object-fit: cover; 
+    object-position: center; 
 }
 
 .hero-content {
     position: relative;
-    z-index: 2; /* Keeps the text on top of the background */
+    z-index: 2;
 }
 .hero-content h1 {
     font-size: 5rem;
@@ -175,7 +175,7 @@ h2::after {
 }
 .flip-card-back img { width: 100%; height: 100%; object-fit: cover; }
 
-/* --- MUSIC SECTION --- */
+/* --- MUSIC SECTION WITH PLAY BUTTONS --- */
 .music-list {
     display: flex;
     flex-direction: column;
@@ -191,12 +191,23 @@ h2::after {
     padding: 20px 30px;
     border-radius: 10px;
     border-left: 5px solid var(--accent);
-    cursor: pointer;
     transition: background 0.3s;
 }
 .song-item:hover { background: #2a2a2a; }
 .song-title { font-weight: bold; font-size: 1.2rem; }
-.song-icon { font-size: 1.5rem; }
+
+.play-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--accent);
+    transition: transform 0.2s;
+    padding: 5px;
+}
+.play-btn:hover {
+    transform: scale(1.2);
+}
 
 /* --- FOOTER --- */
 footer {

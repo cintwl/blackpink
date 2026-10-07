@@ -18,12 +18,10 @@
 
     <!-- HERO SECTION WITH BACKGROUND PHOTO -->
     <header id="home" class="hero-section">
-        <!-- The Background Photo (all.jpg) -->
         <div class="hero-bg">
             <img src="all.jpg" alt="Blackpink Group">
         </div>
         
-        <!-- The Text on Top -->
         <div class="hero-content">
             <h1>BLACKPINK</h1>
             <p>In your area.</p>
@@ -95,27 +93,35 @@
         </div>
     </section>
 
-    <!-- MUSIC SECTION -->
+    <!-- MUSIC SECTION WITH PLAYABLE AUDIO -->
     <section id="music" class="music-section">
         <h2>Hit Songs</h2>
-        <p class="subtitle">Press play on some of their biggest hits.</p>
+        <p class="subtitle">Click the play button to listen.</p>
         
         <div class="music-list">
+            <!-- Song 1 -->
             <div class="song-item">
                 <span class="song-title">How You Like That</span>
-                <span class="song-icon">▶️</span>
+                <button class="play-btn" onclick="togglePlay(this)">▶️</button>
+                <audio src="song1.mp3" onended="this.previousElementSibling.innerText='▶️'"></audio>
             </div>
+            <!-- Song 2 -->
             <div class="song-item">
                 <span class="song-title">DDU-DU DDU-DU</span>
-                <span class="song-icon">▶️</span>
+                <button class="play-btn" onclick="togglePlay(this)">▶️</button>
+                <audio src="song2.mp3" onended="this.previousElementSibling.innerText='▶️'"></audio>
             </div>
+            <!-- Song 3 -->
             <div class="song-item">
                 <span class="song-title">Kill This Love</span>
-                <span class="song-icon">▶️</span>
+                <button class="play-btn" onclick="togglePlay(this)">▶️</button>
+                <audio src="song3.mp3" onended="this.previousElementSibling.innerText='▶️'"></audio>
             </div>
+            <!-- Song 4 -->
             <div class="song-item">
                 <span class="song-title">Pink Venom</span>
-                <span class="song-icon">▶️</span>
+                <button class="play-btn" onclick="togglePlay(this)">▶️</button>
+                <audio src="song4.mp3" onended="this.previousElementSibling.innerText='▶️'"></audio>
             </div>
         </div>
     </section>
@@ -123,6 +129,31 @@
     <footer>
         <p>BLACKPINK IN YOUR AREA 💗🖤</p>
     </footer>
+
+    <!-- JAVASCRIPT FOR MUSIC PLAYER -->
+    <script>
+        function togglePlay(btn) {
+            const audio = btn.nextElementSibling;
+
+            // Pause all other songs and reset their icons
+            document.querySelectorAll('audio').forEach(a => {
+                if (a !== audio) {
+                    a.pause();
+                    a.currentTime = 0;
+                    a.previousElementSibling.innerText = "▶️";
+                }
+            });
+
+            // Play or pause the clicked song
+            if (audio.paused) {
+                audio.play();
+                btn.innerText = "⏸️"; // Pause icon
+            } else {
+                audio.pause();
+                btn.innerText = "▶️"; // Play icon
+            }
+        }
+    </script>
 
 </body>
 </html>
