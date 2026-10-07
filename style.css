@@ -225,12 +225,13 @@ h2::after {
     padding: 15px 30px;
 }
 
-/* Stylish Slider */
+/* Stylish Slider with Dynamic Color Fill */
 .progress-bar {
     -webkit-appearance: none;
     width: 100%;
     height: 8px;
-    background: #333;
+    /* The pink fills up to the current progress point, gray for the rest */
+    background: linear-gradient(to right, var(--accent) 0%, var(--accent) var(--progress, 0%), #333 var(--progress, 0%), #333 100%);
     border-radius: 5px;
     outline: none;
     cursor: pointer;

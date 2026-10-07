@@ -182,7 +182,9 @@
                 if (a !== audio) {
                     a.pause();
                     a.closest('.song-item').querySelector('.play-btn').classList.remove('playing');
-                    a.closest('.song-item').querySelector('.progress-bar').value = 0;
+                    const otherBar = a.closest('.song-item').querySelector('.progress-bar');
+                    otherBar.value = 0;
+                    otherBar.style.setProperty('--progress', '0%');
                 }
             });
 
@@ -206,6 +208,7 @@
             audio.currentTime = 0;
             playBtn.classList.remove('playing');
             progressBar.value = 0;
+            progressBar.style.setProperty('--progress', '0%');
         }
 
         // Update the slider as the song plays
@@ -214,6 +217,7 @@
             const progressBar = songItem.querySelector('.progress-bar');
             if (audio.duration) {
                 progressBar.value = (audio.currentTime / audio.duration) * 100;
+                progressBar.style.setProperty('--progress', progressBar.value + '%');
             }
         }
 
@@ -223,6 +227,7 @@
             const audio = songItem.querySelector('audio');
             if (audio.duration) {
                 audio.currentTime = (input.value / 100) * audio.duration;
+                input.style.setProperty('--progress', input.value + '%');
             }
         }
 
@@ -233,6 +238,7 @@
             const progressBar = songItem.querySelector('.progress-bar');
             playBtn.classList.remove('playing');
             progressBar.value = 0;
+            progressBar.style.setProperty('--progress', '0%');
         }
     </script>
 
