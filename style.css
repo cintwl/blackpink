@@ -38,36 +38,37 @@ nav a {
 }
 nav a:hover { color: var(--accent); }
 
-/* --- HERO SECTION WITH all.jpg BACKGROUND --- */
+/* --- HERO SECTION (FULL SCREEN BACKGROUND) --- */
 .hero-section {
     position: relative;
-    padding: 150px 20px;
-    background-color: #0a0a0a;
-    border-bottom: 4px solid var(--accent);
-    overflow: hidden;
+    height: 100vh; /* Fills the entire screen height */
+    padding: 0; /* Removes empty space around the image */
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
+    overflow: hidden;
+    border-bottom: 4px solid var(--accent);
 }
 
 .hero-bg {
     position: absolute;
     top: 0; left: 0;
-    width: 100%; height: 100%;
+    width: 100%; 
+    height: 100%;
     z-index: 1;
-    opacity: 0.3; /* Lower number = more transparent background */
+    opacity: 0.8; /* Higher number = more clear, lower = more transparent */
 }
 
 .hero-bg img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures the image covers the whole background */
+    object-fit: cover; /* Stretches the image to fill the whole area without distortion */
+    object-position: center; /* Keeps the girls in the center of the frame */
 }
 
 .hero-content {
     position: relative;
-    z-index: 2; /* Keeps the text on top of the background image */
+    z-index: 2; /* Keeps the text on top of the background */
 }
 .hero-content h1 {
     font-size: 5rem;
