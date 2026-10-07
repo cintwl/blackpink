@@ -186,7 +186,7 @@ h2::after {
 .flip-card-back { background: #000; transform: rotateY(180deg); border: 2px solid var(--accent); padding: 0; }
 .flip-card-back img { width: 100%; height: 100%; object-fit: cover; }
 
-/* --- MUSIC ALBUM GRID --- */
+/* --- MUSIC ALBUM GRID WITH ICONS --- */
 .album-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -201,33 +201,46 @@ h2::after {
     position: relative;
     width: 100%;
     aspect-ratio: 1 / 1;
-    border-radius: 15px;
-    overflow: hidden;
+    border-radius: 50%; /* Makes it look like a vinyl record */
+    background: radial-gradient(circle, #333 20%, #111 80%); /* Vinyl record gradient */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     box-shadow: 0 10px 25px rgba(255, 20, 147, 0.2);
     transition: transform 0.3s, box-shadow 0.3s;
+    border: 4px solid #222;
 }
 .album-cover:hover {
-    transform: translateY(-5px) scale(1.02);
+    transform: translateY(-5px) scale(1.05);
     box-shadow: 0 15px 35px rgba(255, 20, 147, 0.5);
 }
-.album-cover img {
-    width: 100%; height: 100%;
-    object-fit: cover;
+.album-icon {
+    font-size: 5rem;
+    color: white;
+    transition: all 0.3s;
+}
+.album-cover.playing .album-icon {
+    animation: spin 2s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 .album-overlay {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.4);
     display: flex;
     justify-content: center;
     align-items: center;
     opacity: 0;
     transition: opacity 0.3s;
+    border-radius: 50%;
 }
 .album-cover:hover .album-overlay { opacity: 1; }
-.album-cover.playing .album-overlay { opacity: 1; background: rgba(255, 20, 147, 0.6); }
+.album-cover.playing .album-overlay { opacity: 1; background: rgba(255, 20, 147, 0.5); }
 .album-overlay .play-icon {
     font-size: 3rem;
     color: white;
