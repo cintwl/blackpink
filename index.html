@@ -99,16 +99,16 @@
         </div>
     </section>
 
-    <!-- MUSIC SECTION WITH ALBUM COVERS -->
+    <!-- MUSIC SECTION WITH ALBUM ICONS -->
     <section id="music" class="music-section">
         <h2>Albums</h2>
-        <p class="subtitle">Click an album cover to play the songs!</p>
+        <p class="subtitle">Click an album to play the songs!</p>
         
         <div class="album-grid">
             <!-- Album 1 -->
             <div class="album-item">
                 <div class="album-cover" onclick="toggleAlbum('album1')">
-                    <img src="all.jpg" alt="Album 1">
+                    <div class="album-icon">💿</div>
                     <div class="album-overlay">
                         <span class="play-icon">▶</span>
                     </div>
@@ -124,7 +124,7 @@
             <!-- Album 2 -->
             <div class="album-item">
                 <div class="album-cover" onclick="toggleAlbum('album2')">
-                    <img src="jennie.jpg" alt="Album 2">
+                    <div class="album-icon">💿</div>
                     <div class="album-overlay">
                         <span class="play-icon">▶</span>
                     </div>
@@ -140,7 +140,7 @@
             <!-- Album 3 -->
             <div class="album-item">
                 <div class="album-cover" onclick="toggleAlbum('album3')">
-                    <img src="rosie.jpg" alt="Album 3">
+                    <div class="album-icon">💿</div>
                     <div class="album-overlay">
                         <span class="play-icon">▶</span>
                     </div>
@@ -156,7 +156,7 @@
             <!-- Album 4 -->
             <div class="album-item">
                 <div class="album-cover" onclick="toggleAlbum('album4')">
-                    <img src="lisa.jpg" alt="Album 4">
+                    <div class="album-icon">💿</div>
                     <div class="album-overlay">
                         <span class="play-icon">▶</span>
                     </div>
@@ -203,6 +203,7 @@
             const songItem = container.closest('.album-item');
             const audio = songItem.querySelector('audio');
             const cover = songItem.querySelector('.album-cover');
+            const icon = songItem.querySelector('.album-icon');
             
             // Toggle progress bar visibility
             container.classList.toggle('active');
@@ -215,17 +216,24 @@
                         a.pause();
                         a.currentTime = 0;
                         const otherContainer = a.closest('.album-item').querySelector('.progress-container');
+                        const otherCover = a.closest('.album-item').querySelector('.album-cover');
+                        const otherIcon = a.closest('.album-item').querySelector('.album-icon');
+                        
                         otherContainer.classList.remove('active');
                         otherContainer.querySelector('.progress-bar').value = 0;
                         otherContainer.querySelector('.progress-bar').style.setProperty('--progress', '0%');
+                        otherCover.classList.remove('playing');
+                        otherIcon.style.animationPlayState = 'paused';
                     }
                 });
                 
                 audio.play();
                 cover.classList.add('playing');
+                icon.style.animationPlayState = 'running';
             } else {
                 audio.pause();
                 cover.classList.remove('playing');
+                icon.style.animationPlayState = 'paused';
             }
         }
 
@@ -233,11 +241,13 @@
             const songItem = btn.closest('.album-item');
             const audio = songItem.querySelector('audio');
             const cover = songItem.querySelector('.album-cover');
+            const icon = songItem.querySelector('.album-icon');
             const progressBar = songItem.querySelector('.progress-bar');
 
             audio.pause();
             audio.currentTime = 0;
             cover.classList.remove('playing');
+            icon.style.animationPlayState = 'paused';
             progressBar.value = 0;
             progressBar.style.setProperty('--progress', '0%');
         }
@@ -263,8 +273,10 @@
         function resetAudio(audio) {
             const songItem = audio.closest('.album-item');
             const cover = songItem.querySelector('.album-cover');
+            const icon = songItem.querySelector('.album-icon');
             const progressBar = songItem.querySelector('.progress-bar');
             cover.classList.remove('playing');
+            icon.style.animationPlayState = 'paused';
             progressBar.value = 0;
             progressBar.style.setProperty('--progress', '0%');
         }
