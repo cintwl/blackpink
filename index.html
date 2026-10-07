@@ -96,32 +96,67 @@
     <!-- MUSIC SECTION WITH PLAYABLE AUDIO -->
     <section id="music" class="music-section">
         <h2>Hit Songs</h2>
-        <p class="subtitle">Click the play button to listen.</p>
+        <p class="subtitle">Click the song name to open the player, or press play!</p>
         
         <div class="music-list">
             <!-- Song 1 -->
             <div class="song-item">
-                <span class="song-title">How You Like That</span>
-                <button class="play-btn" onclick="togglePlay(this)">▶️</button>
-                <audio src="song1.mp3" onended="this.previousElementSibling.innerText='▶️'"></audio>
+                <div class="song-header" onclick="toggleProgress('song1')">
+                    <span class="song-title">How You Like That</span>
+                    <button class="play-btn" onclick="event.stopPropagation(); togglePlay(this)">
+                        <div class="play-icon"></div>
+                    </button>
+                </div>
+                <div class="progress-container" id="progress-container-song1">
+                    <input type="range" class="progress-bar" value="0" max="100" oninput="seekAudio(this)">
+                    <button class="stop-btn" onclick="stopAudio(this)">⏹</button>
+                </div>
+                <audio src="song1.mp3" ontimeupdate="updateProgress(this)" onended="resetAudio(this)"></audio>
             </div>
+
             <!-- Song 2 -->
             <div class="song-item">
-                <span class="song-title">DDU-DU DDU-DU</span>
-                <button class="play-btn" onclick="togglePlay(this)">▶️</button>
-                <audio src="song2.mp3" onended="this.previousElementSibling.innerText='▶️'"></audio>
+                <div class="song-header" onclick="toggleProgress('song2')">
+                    <span class="song-title">DDU-DU DDU-DU</span>
+                    <button class="play-btn" onclick="event.stopPropagation(); togglePlay(this)">
+                        <div class="play-icon"></div>
+                    </button>
+                </div>
+                <div class="progress-container" id="progress-container-song2">
+                    <input type="range" class="progress-bar" value="0" max="100" oninput="seekAudio(this)">
+                    <button class="stop-btn" onclick="stopAudio(this)">⏹</button>
+                </div>
+                <audio src="song2.mp3" ontimeupdate="updateProgress(this)" onended="resetAudio(this)"></audio>
             </div>
+
             <!-- Song 3 -->
             <div class="song-item">
-                <span class="song-title">Kill This Love</span>
-                <button class="play-btn" onclick="togglePlay(this)">▶️</button>
-                <audio src="song3.mp3" onended="this.previousElementSibling.innerText='▶️'"></audio>
+                <div class="song-header" onclick="toggleProgress('song3')">
+                    <span class="song-title">Kill This Love</span>
+                    <button class="play-btn" onclick="event.stopPropagation(); togglePlay(this)">
+                        <div class="play-icon"></div>
+                    </button>
+                </div>
+                <div class="progress-container" id="progress-container-song3">
+                    <input type="range" class="progress-bar" value="0" max="100" oninput="seekAudio(this)">
+                    <button class="stop-btn" onclick="stopAudio(this)">⏹</button>
+                </div>
+                <audio src="song3.mp3" ontimeupdate="updateProgress(this)" onended="resetAudio(this)"></audio>
             </div>
+
             <!-- Song 4 -->
             <div class="song-item">
-                <span class="song-title">Pink Venom</span>
-                <button class="play-btn" onclick="togglePlay(this)">▶️</button>
-                <audio src="song4.mp3" onended="this.previousElementSibling.innerText='▶️'"></audio>
+                <div class="song-header" onclick="toggleProgress('song4')">
+                    <span class="song-title">Pink Venom</span>
+                    <button class="play-btn" onclick="event.stopPropagation(); togglePlay(this)">
+                        <div class="play-icon"></div>
+                    </button>
+                </div>
+                <div class="progress-container" id="progress-container-song4">
+                    <input type="range" class="progress-bar" value="0" max="100" oninput="seekAudio(this)">
+                    <button class="stop-btn" onclick="stopAudio(this)">⏹</button>
+                </div>
+                <audio src="song4.mp3" ontimeupdate="updateProgress(this)" onended="resetAudio(this)"></audio>
             </div>
         </div>
     </section>
@@ -132,26 +167,74 @@
 
     <!-- JAVASCRIPT FOR MUSIC PLAYER -->
     <script>
-        function togglePlay(btn) {
-            const audio = btn.nextElementSibling;
+        // Toggle the progress bar visibility when clicking the song name
+        function toggleProgress(songId) {
+            const container = document.getElementById('progress-container-' + songId);
+            container.classList.toggle('active');
+        }
 
-            // Pause all other songs and reset their icons
+        // Play/Pause the audio
+        function togglePlay(btn) {
+            const songItem = btn.closest('.song-item');
+            const audio = songItem.querySelector('audio');
+            const playIcon = btn.querySelector('.play-icon');
+
+            // Pause all other songs
             document.querySelectorAll('audio').forEach(a => {
                 if (a !== audio) {
                     a.pause();
-                    a.currentTime = 0;
-                    a.previousElementSibling.innerText = "▶️";
+                    a.closest('.song-item').querySelector('.play-btn').classList.remove('playing');
+                    a.closest('.song-item').querySelector('.progress-bar').value = 0;
                 }
             });
 
-            // Play or pause the clicked song
             if (audio.paused) {
                 audio.play();
-                btn.innerText = "⏸️"; // Pause icon
+                btn.classList.add('playing');
             } else {
                 audio.pause();
-                btn.innerText = "▶️"; // Play icon
+                btn.classList.remove('playing');
             }
+        }
+
+        // Stop the audio and reset
+        function stopAudio(btn) {
+            const songItem = btn.closest('.song-item');
+            const audio = songItem.querySelector('audio');
+            const playBtn = songItem.querySelector('.play-btn');
+            const progressBar = songItem.querySelector('.progress-bar');
+
+            audio.pause();
+            audio.currentTime = 0;
+            playBtn.classList.remove('playing');
+            progressBar.value = 0;
+        }
+
+        // Update the slider as the song plays
+        function updateProgress(audio) {
+            const songItem = audio.closest('.song-item');
+            const progressBar = songItem.querySelector('.progress-bar');
+            if (audio.duration) {
+                progressBar.value = (audio.currentTime / audio.duration) * 100;
+            }
+        }
+
+        // Seek to a specific part of the song when sliding
+        function seekAudio(input) {
+            const songItem = input.closest('.song-item');
+            const audio = songItem.querySelector('audio');
+            if (audio.duration) {
+                audio.currentTime = (input.value / 100) * audio.duration;
+            }
+        }
+
+        // Reset when song ends
+        function resetAudio(audio) {
+            const songItem = audio.closest('.song-item');
+            const playBtn = songItem.querySelector('.play-btn');
+            const progressBar = songItem.querySelector('.progress-bar');
+            playBtn.classList.remove('playing');
+            progressBar.value = 0;
         }
     </script>
 
