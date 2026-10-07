@@ -12,7 +12,7 @@
     <nav>
         <a href="#home">Home</a>
         <a href="#members">Members</a>
-        <a href="#music">Music</a>
+        <a href="#music">Albums</a>
         <a href="#gallery">Gallery</a>
     </nav>
 
@@ -29,11 +29,17 @@
         </div>
     </header>
 
-    <!-- MEMBERS SECTION WITH FLIP CARDS -->
+    <!-- MEMBERS SECTION WITH 3D TILT CARDS -->
     <section id="members" class="members-section">
         <h2>The Members</h2>
-        <p class="subtitle">Click on a card to reveal them.</p>
+        <p class="subtitle">Hover over a card to see the 3D effect, then click to reveal them.</p>
         
+        <!-- Cute 3D Guide Character -->
+        <div class="guide-character">
+            <div class="guide-bubble">Click me!</div>
+            <div class="guide-icon">🐰</div>
+        </div>
+
         <div class="members-grid">
             <!-- Jisoo Card -->
             <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
@@ -93,66 +99,70 @@
         </div>
     </section>
 
-    <!-- MUSIC SECTION WITH INTERACTIVE PLAYER -->
+    <!-- MUSIC SECTION WITH ALBUM COVERS -->
     <section id="music" class="music-section">
-        <h2>Hit Songs</h2>
-        <p class="subtitle">Click the song name to open the player, or press play!</p>
+        <h2>Albums</h2>
+        <p class="subtitle">Click an album cover to play the songs!</p>
         
-        <div class="music-list">
-            <!-- Song 1 -->
-            <div class="song-item">
-                <div class="song-header" onclick="toggleProgress('song1')">
-                    <span class="song-title">How You Like That</span>
-                    <button class="play-btn" onclick="event.stopPropagation(); togglePlay(this)">
-                        <div class="play-icon"></div>
-                    </button>
+        <div class="album-grid">
+            <!-- Album 1 -->
+            <div class="album-item">
+                <div class="album-cover" onclick="toggleAlbum('album1')">
+                    <img src="all.jpg" alt="Album 1">
+                    <div class="album-overlay">
+                        <span class="play-icon">▶</span>
+                    </div>
                 </div>
-                <div class="progress-container" id="progress-container-song1">
+                <h3>THE ALBUM</h3>
+                <div class="progress-container" id="progress-container-album1">
                     <input type="range" class="progress-bar" value="0" max="100" oninput="seekAudio(this)">
                     <button class="stop-btn" onclick="stopAudio(this)">⏹</button>
                 </div>
                 <audio src="song1.mp3" ontimeupdate="updateProgress(this)" onended="resetAudio(this)"></audio>
             </div>
 
-            <!-- Song 2 -->
-            <div class="song-item">
-                <div class="song-header" onclick="toggleProgress('song2')">
-                    <span class="song-title">DDU-DU DDU-DU</span>
-                    <button class="play-btn" onclick="event.stopPropagation(); togglePlay(this)">
-                        <div class="play-icon"></div>
-                    </button>
+            <!-- Album 2 -->
+            <div class="album-item">
+                <div class="album-cover" onclick="toggleAlbum('album2')">
+                    <img src="jennie.jpg" alt="Album 2">
+                    <div class="album-overlay">
+                        <span class="play-icon">▶</span>
+                    </div>
                 </div>
-                <div class="progress-container" id="progress-container-song2">
+                <h3>BORN PINK</h3>
+                <div class="progress-container" id="progress-container-album2">
                     <input type="range" class="progress-bar" value="0" max="100" oninput="seekAudio(this)">
                     <button class="stop-btn" onclick="stopAudio(this)">⏹</button>
                 </div>
                 <audio src="song2.mp3" ontimeupdate="updateProgress(this)" onended="resetAudio(this)"></audio>
             </div>
 
-            <!-- Song 3 -->
-            <div class="song-item">
-                <div class="song-header" onclick="toggleProgress('song3')">
-                    <span class="song-title">Kill This Love</span>
-                    <button class="play-btn" onclick="event.stopPropagation(); togglePlay(this)">
-                        <div class="play-icon"></div>
-                    </button>
+            <!-- Album 3 -->
+            <div class="album-item">
+                <div class="album-cover" onclick="toggleAlbum('album3')">
+                    <img src="rosie.jpg" alt="Album 3">
+                    <div class="album-overlay">
+                        <span class="play-icon">▶</span>
+                    </div>
                 </div>
-                <div class="progress-container" id="progress-container-song3">
+                <h3>KILL THIS LOVE</h3>
+                <div class="progress-container" id="progress-container-album3">
                     <input type="range" class="progress-bar" value="0" max="100" oninput="seekAudio(this)">
                     <button class="stop-btn" onclick="stopAudio(this)">⏹</button>
                 </div>
                 <audio src="song3.mp3" ontimeupdate="updateProgress(this)" onended="resetAudio(this)"></audio>
             </div>
 
-            <!-- Song 4 -->
-            <div class="song-item">
-                <div class="song-header" onclick="toggleProgress('song4')">
-                    <span class="song-title">Pink Venom</span>
-                    <button class="play-btn" onclick="event.stopPropagation(); togglePlay(this)">
-                        <div class="play-icon"></div>
-                    </button>
+            <!-- Album 4 -->
+            <div class="album-item">
+                <div class="album-cover" onclick="toggleAlbum('album4')">
+                    <img src="lisa.jpg" alt="Album 4">
+                    <div class="album-overlay">
+                        <span class="play-icon">▶</span>
+                    </div>
                 </div>
-                <div class="progress-container" id="progress-container-song4">
+                <h3>PINK VENOM</h3>
+                <div class="progress-container" id="progress-container-album4">
                     <input type="range" class="progress-bar" value="0" max="100" oninput="seekAudio(this)">
                     <button class="stop-btn" onclick="stopAudio(this)">⏹</button>
                 </div>
@@ -166,54 +176,74 @@
     </footer>
 
     <script>
-        // Toggle the progress bar visibility when clicking the song name
-        function toggleProgress(songId) {
-            const container = document.getElementById('progress-container-' + songId);
-            container.classList.toggle('active');
-        }
-
-        // Play/Pause the audio
-        function togglePlay(btn) {
-            const songItem = btn.closest('.song-item');
-            const audio = songItem.querySelector('audio');
-
-            // Pause all other songs
-            document.querySelectorAll('audio').forEach(a => {
-                if (a !== audio) {
-                    a.pause();
-                    a.closest('.song-item').querySelector('.play-btn').classList.remove('playing');
-                    const otherBar = a.closest('.song-item').querySelector('.progress-bar');
-                    otherBar.value = 0;
-                    otherBar.style.setProperty('--progress', '0%');
-                }
+        // --- MEMBER CARD 3D TILT LOGIC ---
+        const cards = document.querySelectorAll('.flip-card');
+        
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
             });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            });
+        });
 
+        // --- ALBUM PLAYER LOGIC ---
+        function toggleAlbum(albumId) {
+            const container = document.getElementById('progress-container-' + albumId);
+            const songItem = container.closest('.album-item');
+            const audio = songItem.querySelector('audio');
+            const cover = songItem.querySelector('.album-cover');
+            
+            // Toggle progress bar visibility
+            container.classList.toggle('active');
+            
+            // Toggle play/pause
             if (audio.paused) {
+                // Pause all other songs
+                document.querySelectorAll('audio').forEach(a => {
+                    if (a !== audio) {
+                        a.pause();
+                        a.currentTime = 0;
+                        const otherContainer = a.closest('.album-item').querySelector('.progress-container');
+                        otherContainer.classList.remove('active');
+                        otherContainer.querySelector('.progress-bar').value = 0;
+                        otherContainer.querySelector('.progress-bar').style.setProperty('--progress', '0%');
+                    }
+                });
+                
                 audio.play();
-                btn.classList.add('playing');
+                cover.classList.add('playing');
             } else {
                 audio.pause();
-                btn.classList.remove('playing');
+                cover.classList.remove('playing');
             }
         }
 
-        // Stop the audio and reset
         function stopAudio(btn) {
-            const songItem = btn.closest('.song-item');
+            const songItem = btn.closest('.album-item');
             const audio = songItem.querySelector('audio');
-            const playBtn = songItem.querySelector('.play-btn');
+            const cover = songItem.querySelector('.album-cover');
             const progressBar = songItem.querySelector('.progress-bar');
 
             audio.pause();
             audio.currentTime = 0;
-            playBtn.classList.remove('playing');
+            cover.classList.remove('playing');
             progressBar.value = 0;
             progressBar.style.setProperty('--progress', '0%');
         }
 
-        // Update the slider as the song plays
         function updateProgress(audio) {
-            const songItem = audio.closest('.song-item');
+            const songItem = audio.closest('.album-item');
             const progressBar = songItem.querySelector('.progress-bar');
             if (audio.duration) {
                 progressBar.value = (audio.currentTime / audio.duration) * 100;
@@ -221,9 +251,8 @@
             }
         }
 
-        // Seek to a specific part of the song when sliding
         function seekAudio(input) {
-            const songItem = input.closest('.song-item');
+            const songItem = input.closest('.album-item');
             const audio = songItem.querySelector('audio');
             if (audio.duration) {
                 audio.currentTime = (input.value / 100) * audio.duration;
@@ -231,12 +260,11 @@
             }
         }
 
-        // Reset when song ends
         function resetAudio(audio) {
-            const songItem = audio.closest('.song-item');
-            const playBtn = songItem.querySelector('.play-btn');
+            const songItem = audio.closest('.album-item');
+            const cover = songItem.querySelector('.album-cover');
             const progressBar = songItem.querySelector('.progress-bar');
-            playBtn.classList.remove('playing');
+            cover.classList.remove('playing');
             progressBar.value = 0;
             progressBar.style.setProperty('--progress', '0%');
         }
