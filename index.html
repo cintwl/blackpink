@@ -36,8 +36,8 @@
         
         <!-- Cute 3D Guide Character -->
         <div class="guide-character">
-            <div class="guide-bubble">Click me!</div>
-            <div class="guide-icon">🐰</div>
+            <div class="guide-bubble">Click the cards!</div>
+            <div class="guide-icon">💃</div>
         </div>
 
         <div class="members-grid">
@@ -99,7 +99,7 @@
         </div>
     </section>
 
-    <!-- MUSIC SECTION WITH ALBUM ICONS -->
+    <!-- MUSIC SECTION WITH BEAUTIFUL ALBUM VINYLS -->
     <section id="music" class="music-section">
         <h2>Albums</h2>
         <p class="subtitle">Click an album to play the songs!</p>
@@ -108,12 +108,12 @@
             <!-- Album 1 -->
             <div class="album-item">
                 <div class="album-cover" onclick="toggleAlbum('album1')">
-                    <div class="album-icon">💿</div>
+                    <div class="vinyl-label">THE ALBUM</div>
                     <div class="album-overlay">
                         <span class="play-icon">▶</span>
                     </div>
                 </div>
-                <h3>THE ALBUM</h3>
+                <h3>How You Like That</h3>
                 <div class="progress-container" id="progress-container-album1">
                     <input type="range" class="progress-bar" value="0" max="100" oninput="seekAudio(this)">
                     <button class="stop-btn" onclick="stopAudio(this)">⏹</button>
@@ -124,12 +124,12 @@
             <!-- Album 2 -->
             <div class="album-item">
                 <div class="album-cover" onclick="toggleAlbum('album2')">
-                    <div class="album-icon">💿</div>
+                    <div class="vinyl-label">BORN PINK</div>
                     <div class="album-overlay">
                         <span class="play-icon">▶</span>
                     </div>
                 </div>
-                <h3>BORN PINK</h3>
+                <h3>DDU-DU DDU-DU</h3>
                 <div class="progress-container" id="progress-container-album2">
                     <input type="range" class="progress-bar" value="0" max="100" oninput="seekAudio(this)">
                     <button class="stop-btn" onclick="stopAudio(this)">⏹</button>
@@ -140,12 +140,12 @@
             <!-- Album 3 -->
             <div class="album-item">
                 <div class="album-cover" onclick="toggleAlbum('album3')">
-                    <div class="album-icon">💿</div>
+                    <div class="vinyl-label">KILL THIS LOVE</div>
                     <div class="album-overlay">
                         <span class="play-icon">▶</span>
                     </div>
                 </div>
-                <h3>KILL THIS LOVE</h3>
+                <h3>Kill This Love</h3>
                 <div class="progress-container" id="progress-container-album3">
                     <input type="range" class="progress-bar" value="0" max="100" oninput="seekAudio(this)">
                     <button class="stop-btn" onclick="stopAudio(this)">⏹</button>
@@ -156,12 +156,12 @@
             <!-- Album 4 -->
             <div class="album-item">
                 <div class="album-cover" onclick="toggleAlbum('album4')">
-                    <div class="album-icon">💿</div>
+                    <div class="vinyl-label">PINK VENOM</div>
                     <div class="album-overlay">
                         <span class="play-icon">▶</span>
                     </div>
                 </div>
-                <h3>PINK VENOM</h3>
+                <h3>Pink Venom</h3>
                 <div class="progress-container" id="progress-container-album4">
                     <input type="range" class="progress-bar" value="0" max="100" oninput="seekAudio(this)">
                     <button class="stop-btn" onclick="stopAudio(this)">⏹</button>
@@ -203,7 +203,6 @@
             const songItem = container.closest('.album-item');
             const audio = songItem.querySelector('audio');
             const cover = songItem.querySelector('.album-cover');
-            const icon = songItem.querySelector('.album-icon');
             
             // Toggle progress bar visibility
             container.classList.toggle('active');
@@ -217,23 +216,19 @@
                         a.currentTime = 0;
                         const otherContainer = a.closest('.album-item').querySelector('.progress-container');
                         const otherCover = a.closest('.album-item').querySelector('.album-cover');
-                        const otherIcon = a.closest('.album-item').querySelector('.album-icon');
                         
                         otherContainer.classList.remove('active');
                         otherContainer.querySelector('.progress-bar').value = 0;
                         otherContainer.querySelector('.progress-bar').style.setProperty('--progress', '0%');
                         otherCover.classList.remove('playing');
-                        otherIcon.style.animationPlayState = 'paused';
                     }
                 });
                 
                 audio.play();
                 cover.classList.add('playing');
-                icon.style.animationPlayState = 'running';
             } else {
                 audio.pause();
                 cover.classList.remove('playing');
-                icon.style.animationPlayState = 'paused';
             }
         }
 
@@ -241,13 +236,11 @@
             const songItem = btn.closest('.album-item');
             const audio = songItem.querySelector('audio');
             const cover = songItem.querySelector('.album-cover');
-            const icon = songItem.querySelector('.album-icon');
             const progressBar = songItem.querySelector('.progress-bar');
 
             audio.pause();
             audio.currentTime = 0;
             cover.classList.remove('playing');
-            icon.style.animationPlayState = 'paused';
             progressBar.value = 0;
             progressBar.style.setProperty('--progress', '0%');
         }
@@ -273,10 +266,8 @@
         function resetAudio(audio) {
             const songItem = audio.closest('.album-item');
             const cover = songItem.querySelector('.album-cover');
-            const icon = songItem.querySelector('.album-icon');
             const progressBar = songItem.querySelector('.progress-bar');
             cover.classList.remove('playing');
-            icon.style.animationPlayState = 'paused';
             progressBar.value = 0;
             progressBar.style.setProperty('--progress', '0%');
         }
