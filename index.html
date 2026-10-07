@@ -16,38 +16,84 @@
         <a href="#gallery">Gallery</a>
     </nav>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION WITH BACKGROUND PHOTOS -->
     <header id="home" class="hero-section">
-        <h1>BLACKPINK</h1>
-        <p>In your area.</p>
-        <div class="scroll-indicator">Scroll to explore ↓</div>
+        <!-- The Background Photos -->
+        <div class="hero-bg">
+            <img src="jisoo.jpg" alt="Jisoo">
+            <img src="jennie.jpg" alt="Jennie">
+            <img src="lisa.jpg" alt="Lisa">
+            <img src="rosie.jpg" alt="Rosé">
+        </div>
+        
+        <!-- The Text on Top -->
+        <div class="hero-content">
+            <h1>BLACKPINK</h1>
+            <p>In your area.</p>
+            <div class="scroll-indicator">Scroll to explore ↓</div>
+        </div>
     </header>
 
-    <!-- MEMBERS SECTION -->
+    <!-- MEMBERS SECTION WITH FLIP CARDS -->
     <section id="members" class="members-section">
         <h2>The Members</h2>
-        <p class="subtitle">Four incredible talents. One legendary group.</p>
+        <p class="subtitle">Click on a card to reveal them.</p>
         
         <div class="members-grid">
-            <div class="member-card">
-                <div class="member-icon">🎤</div>
-                <h3>Jisoo</h3>
-                <p>The elegant vocalist and actress.</p>
+            <!-- Jisoo Card -->
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="member-icon">🎤</div>
+                        <h3>Jisoo</h3>
+                        <p>The elegant vocalist and actress.</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="jisoo.jpg" alt="Jisoo">
+                    </div>
+                </div>
             </div>
-            <div class="member-card">
-                <div class="member-icon">🔥</div>
-                <h3>Jennie</h3>
-                <p>The fierce rapper and fashion icon.</p>
+
+            <!-- Jennie Card -->
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="member-icon">🔥</div>
+                        <h3>Jennie</h3>
+                        <p>The fierce rapper and fashion icon.</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="jennie.jpg" alt="Jennie">
+                    </div>
+                </div>
             </div>
-            <div class="member-card">
-                <div class="member-icon">🎸</div>
-                <h3>Rosé</h3>
-                <p>The golden-voiced main vocalist.</p>
+
+            <!-- Rosé Card -->
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="member-icon">🎸</div>
+                        <h3>Rosé</h3>
+                        <p>The golden-voiced main vocalist.</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="rosie.jpg" alt="Rosé">
+                    </div>
+                </div>
             </div>
-            <div class="member-card">
-                <div class="member-icon">💃</div>
-                <h3>Lisa</h3>
-                <p>The incredible main dancer and rapper.</p>
+
+            <!-- Lisa Card -->
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="member-icon">💃</div>
+                        <h3>Lisa</h3>
+                        <p>The incredible main dancer and rapper.</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="lisa.jpg" alt="Lisa">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -74,19 +120,6 @@
                 <span class="song-title">Pink Venom</span>
                 <span class="song-icon">▶️</span>
             </div>
-        </div>
-    </section>
-
-    <!-- GALLERY SECTION -->
-    <section id="gallery" class="gallery-section">
-        <h2>Gallery</h2>
-        <p class="subtitle">A visual journey through their eras.</p>
-        
-        <div class="gallery-grid">
-            <div class="gallery-item" style="background-color: #ff69b4;">Photo 1</div>
-            <div class="gallery-item" style="background-color: #333;">Photo 2</div>
-            <div class="gallery-item" style="background-color: #ff69b4;">Photo 3</div>
-            <div class="gallery-item" style="background-color: #333;">Photo 4</div>
         </div>
     </section>
 

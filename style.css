@@ -38,27 +38,58 @@ nav a {
 }
 nav a:hover { color: var(--accent); }
 
-/* --- HERO SECTION --- */
+/* --- HERO SECTION WITH BACKGROUND PHOTOS --- */
 .hero-section {
+    position: relative;
     padding: 150px 20px;
-    background: linear-gradient(135deg, #0a0a0a 0%, #2a0a1a 100%);
+    background-color: #0a0a0a;
     border-bottom: 4px solid var(--accent);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
 }
-.hero-section h1 {
+
+.hero-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    opacity: 0.15; /* Makes the background photos faint */
+    z-index: 1;
+    padding: 10px;
+}
+.hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; /* Keeps the text above the background photos */
+}
+.hero-content h1 {
     font-size: 5rem;
     color: var(--accent);
-    text-shadow: 0 0 20px rgba(255, 20, 147, 0.8);
+    text-shadow: 0 0 20px rgba(255, 20, 147, 0.8), 0 0 40px #000;
     letter-spacing: 5px;
 }
-.hero-section p {
+.hero-content p {
     font-size: 1.5rem;
     color: var(--accent2);
     letter-spacing: 3px;
     margin-bottom: 40px;
+    text-shadow: 0 0 10px #000;
 }
 .scroll-indicator {
     font-weight: bold;
-    color: #888;
+    color: #fff;
     animation: bounce 2s infinite;
 }
 @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
@@ -92,27 +123,61 @@ h2::after {
     margin-bottom: 50px;
 }
 
-/* --- MEMBERS GRID --- */
+/* --- 3D FLIP CARD STYLES FOR MEMBERS --- */
 .members-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    justify-items: center;
 }
-.member-card {
-    background: var(--card-bg);
-    padding: 30px 20px;
+
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 380px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
     border-radius: 15px;
+}
+.flip-card.is-flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.flip-card-front {
+    background: var(--card-bg);
     border: 2px solid #333;
-    transition: all 0.3s;
 }
-.member-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--accent);
-    box-shadow: 0 10px 20px rgba(255, 20, 147, 0.2);
+.flip-card-front .member-icon { font-size: 3.5rem; margin-bottom: 15px; }
+.flip-card-front h3 { color: var(--accent2); font-size: 1.8rem; margin-bottom: 10px; }
+.flip-card-front p { color: #ccc; font-size: 0.95rem; }
+.flip-card-back {
+    background: #000;
+    transform: rotateY(180deg);
+    border: 2px solid var(--accent);
+    padding: 0;
 }
-.member-icon { font-size: 3rem; margin-bottom: 15px; }
-.member-card h3 { color: var(--accent2); font-size: 1.5rem; margin-bottom: 10px; }
-.member-card p { color: #ccc; font-size: 0.95rem; }
+.flip-card-back img { width: 100%; height: 100%; object-fit: cover; }
 
 /* --- MUSIC SECTION --- */
 .music-list {
@@ -136,25 +201,6 @@ h2::after {
 .song-item:hover { background: #2a2a2a; }
 .song-title { font-weight: bold; font-size: 1.2rem; }
 .song-icon { font-size: 1.5rem; }
-
-/* --- GALLERY SECTION --- */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-.gallery-item {
-    height: 250px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    border: 2px solid rgba(255,255,255,0.1);
-}
 
 /* --- FOOTER --- */
 footer {
