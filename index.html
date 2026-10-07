@@ -165,7 +165,6 @@
         <p>BLACKPINK IN YOUR AREA 💗🖤</p>
     </footer>
 
-    <!-- JAVASCRIPT FOR MUSIC PLAYER -->
     <script>
         // Toggle the progress bar visibility when clicking the song name
         function toggleProgress(songId) {
@@ -177,7 +176,6 @@
         function togglePlay(btn) {
             const songItem = btn.closest('.song-item');
             const audio = songItem.querySelector('audio');
-            const playIcon = btn.querySelector('.play-icon');
 
             // Pause all other songs
             document.querySelectorAll('audio').forEach(a => {
